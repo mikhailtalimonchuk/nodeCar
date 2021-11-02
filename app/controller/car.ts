@@ -1,6 +1,6 @@
-const carModel = require('../model/car');
+import carModel from '../model/car';
 import { Request, Response, NextFunction } from 'express'
-module.exports = {
+export default {
      async getAllCars (req: Request, res: Response, next: NextFunction) {
         try {
             const result = await carModel.findAll();
@@ -14,7 +14,7 @@ module.exports = {
     async getCarById (req: Request, res: Response, next: NextFunction) {
         try {
             let params = req['query'];
-            const result = await carModel.findOneById(params.id);
+            const result = await carModel.findOneById(String(params.id));
             res.send(result)
             next()
         } catch (err) {
@@ -37,7 +37,7 @@ module.exports = {
         try {
             let params = req['query'];
             console.log(params)
-            const result = await carModel.findOneById(params.id);
+            const result = await carModel.findOneById(String(params.id));
             res.send(result)
             next()
         } catch (err) {

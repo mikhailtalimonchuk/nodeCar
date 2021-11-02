@@ -1,7 +1,7 @@
-const carController = require('./controller/car');
+import carController from './controller/car';
 import { Express } from 'express'
 
-module.exports = (app: Express) => {
+export default (app: Express) => {
     app.get('/car', carController.getCarById)
     app.post('/car', carController.createCar)
     app.put('/car', carController.updateCar)

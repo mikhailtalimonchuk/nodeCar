@@ -1,7 +1,4 @@
-const carsSchema = require('../schema/car')
-const mongoose = require("mongoose");
-
-const carCollection = mongoose.model('car', carsSchema)
+import carCollection from '../schema/car';
 
 export default {
     carCollection ,
@@ -13,13 +10,12 @@ export default {
             .lean()
         return result
     },
-
     async findAll () {
         const query = {}
         const result = await carCollection
             .find(query, { __v: 0 })
             .lean()
-        return result
+        return result;
     },
     async createCar (data: Object) {
         const car = new carCollection(data);

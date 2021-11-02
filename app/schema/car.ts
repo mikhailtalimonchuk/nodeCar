@@ -1,7 +1,5 @@
-const Double = require('@mongoosejs/double')
-const { Schema } = require('mongoose')
-
-const ownerSchema = new Schema({
+import mongoose from "mongoose";
+const ownerSchema = new mongoose.Schema({
     name: {
         type: String,
         required: false,
@@ -16,7 +14,7 @@ const ownerSchema = new Schema({
 
 const carSchema = {
     price: {
-        type: Double,
+        type: mongoose.Types.Decimal128,
         required: true
     },
     firstRegistrationDate: {
@@ -48,8 +46,6 @@ const carSchema = {
     owner: ownerSchema
 }
 
-const schema = new Schema(carSchema)
+const schema = new mongoose.Schema(carSchema);
 
-schema.index({id: 1 })
-
-module.exports = schema
+export default mongoose.model('car', schema);
