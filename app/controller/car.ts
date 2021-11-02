@@ -11,7 +11,7 @@ module.exports = {
         }
     },
 
-    async getCarById (req, res, next) {
+    async getCarById (req: Request, res: Response, next: NextFunction) {
         try {
             let params = req['query'];
             const result = await carModel.findOneById(params.id);
@@ -22,8 +22,9 @@ module.exports = {
         }
     },
 
-    async createCar ({body}, res, next) {
+    async createCar (req: Request, res: Response, next: NextFunction) {
         try {
+            const body = req.body;
            const result = await carModel.createCar(body);
             res.send(result);
             next();
@@ -32,7 +33,7 @@ module.exports = {
         }
     },
 
-    async updateCar (req, res, next) {
+    async updateCar (req: Request, res: Response, next: NextFunction) {
         try {
             let params = req['query'];
             console.log(params)

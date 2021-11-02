@@ -1,6 +1,4 @@
-
-// TODO: replace all require statements with import
-import express from 'express';
+const express = require('express');
 const db = require('./lib/db');
 const routers = require('./routers');
 const app = express();

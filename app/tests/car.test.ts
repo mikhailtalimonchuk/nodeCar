@@ -1,3 +1,5 @@
+
+// @ts-ignore
 const mongoose = require("mongoose");
 const model = require('../model/car');
 
@@ -8,8 +10,8 @@ describe('car model', () => {
         mongoose.connect('mongodb://localhost:27017/test_db', {useNewUrlParser: true, useUnifiedTopology: true});
 
         db = mongoose.connection;
-        db.on('error', (err) => {
-            done.fail(err);
+        db.on('error', (error: string) => {
+            done.fail(error);
         });
 
         db.once('open', function() {
