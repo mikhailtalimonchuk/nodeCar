@@ -2,11 +2,12 @@ const carsSchema = require('../schema/car')
 const mongoose = require("mongoose");
 
 const carCollection = mongoose.model('car', carsSchema)
-module.exports = {
+
+export default {
     carCollection ,
-    async findOneById (id:String) {
+    async findOneById (id: string) {
         let correctId = String(id);
-        const query = { id: correctId.toLowerCase()};
+        const query = { id: correctId.toLowerCase() };
         const result = await carCollection
             .findOne(query, { __v: 0 })
             .lean()

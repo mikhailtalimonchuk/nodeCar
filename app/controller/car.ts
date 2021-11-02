@@ -1,6 +1,7 @@
 const carModel = require('../model/car');
+import { Request, Response, NextFunction } from 'express'
 module.exports = {
-     async getAllCars (req, res, next) {
+     async getAllCars (req: Request, res: Response, next: NextFunction) {
         try {
             const result = await carModel.findAll();
             res.send(result)
