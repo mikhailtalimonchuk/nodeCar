@@ -1,11 +1,20 @@
 const Double = require('@mongoosejs/double')
 const { Schema } = require('mongoose')
-const carSchema = {
-    id: {
+
+const ownerSchema = new Schema({
+    name: {
         type: String,
         required: false,
         index: true
     },
+    purchaseDate: {
+        type: Date,
+        required: false,
+        default: Date.now()
+    }
+}, { _id: false })
+
+const carSchema = {
     price: {
         type: Double,
         required: true
@@ -36,22 +45,7 @@ const carSchema = {
             index: true
         }
     },
-    owner: {
-        id: {
-            type: String,
-            index: true
-        },
-        name: {
-            type: String,
-            required: false,
-            index: true
-        },
-        purchaseDate: {
-            type: Date,
-            required: false,
-            default: Date.now()
-        }
-    }
+    owner: ownerSchema
 }
 
 const schema = new Schema(carSchema)

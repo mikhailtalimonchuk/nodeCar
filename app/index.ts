@@ -1,3 +1,5 @@
+
+// TODO: replace all require statements with import
 import express from 'express';
 const db = require('./lib/db');
 const routers = require('./routers');
