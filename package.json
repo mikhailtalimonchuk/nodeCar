@@ -1,0 +1,22 @@
+{
+  "name": "cars",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./app/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.6",
+    "express": "^4.17.1",
+    "jest": "^27.3.1"
+  },
+  "dependencies": {
+    "@mongoosejs/double": "^0.1.2",
+    "mongoose": "^5.13.12"
+  }
+}
