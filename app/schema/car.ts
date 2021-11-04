@@ -12,9 +12,27 @@ const ownerSchema = new mongoose.Schema({
     }
 }, { _id: false })
 
+const manufacturerSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: false,
+        index: true
+    },
+    phone: {
+        type: String,
+        required: false,
+        index: true
+    },
+    rate: {
+        type: Number,
+        required: false,
+        index: true
+    }
+});
+
 const carSchema = {
     price: {
-        type: mongoose.Types.Decimal128,
+        type: Number,
         required: true
     },
     firstRegistrationDate: {
@@ -22,27 +40,7 @@ const carSchema = {
         default: Date.now,
         index: true
     },
-    manufacturer: {
-        id: {
-            type: String,
-            index: true
-        },
-        name: {
-            type: String,
-            required: false,
-            index: true
-        },
-        phone: {
-            type: String,
-            required: false,
-            index: true
-        },
-        rate: {
-            type: Number,
-            required: false,
-            index: true
-        }
-    },
+    manufacturer: manufacturerSchema,
     owner: ownerSchema
 }
 

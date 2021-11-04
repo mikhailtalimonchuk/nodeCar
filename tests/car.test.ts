@@ -1,7 +1,7 @@
 
 // @ts-ignore
 const mongoose = require("mongoose");
-const model = require('../model/car');
+const model = require('../app/model/car');
 
 describe('car model', () => {
     let db;

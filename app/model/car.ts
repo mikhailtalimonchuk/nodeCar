@@ -2,12 +2,8 @@ import carCollection from '../schema/car';
 
 export default {
     carCollection ,
-    async findOneById (id: string) {
-        let correctId = String(id);
-        const query = { id: correctId.toLowerCase() };
-        const result = await carCollection
-            .findOne(query, { __v: 0 })
-            .lean()
+    async findOneById (correctId: string) {
+        const result = await carCollection.findById(correctId.toLowerCase());
         return result
     },
     async findAll () {
@@ -20,6 +16,10 @@ export default {
     async createCar (data: Object) {
         const car = new carCollection(data);
         const result = await car.save();
+        return result;
+    },
+    async updateCar (query: { id: number }, body: Object) {
+        const result = await carCollection.updateOne({_id: query.id}, body);
         return result;
     }
 }

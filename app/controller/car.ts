@@ -1,4 +1,5 @@
 import carModel from '../model/car';
+import validation, {validationId, validationUpdate} from '../validation/validate';
 import { Request, Response, NextFunction } from 'express'
 export default {
      async getAllCars (req: Request, res: Response, next: NextFunction) {
@@ -13,21 +14,26 @@ export default {
 
     async getCarById (req: Request, res: Response, next: NextFunction) {
         try {
-            let params = req['query'];
-            const result = await carModel.findOneById(String(params.id));
-            res.send(result)
-            next()
+            const {value, error} = validationId(req['query']);
+            if (error == null) {
+                const id = value.id;
+                const result = await carModel.findOneById(id);
+                res.send(result);
+            }
+            next(error);
         } catch (err) {
-            next(err)
+            next(err);
         }
     },
 
     async createCar (req: Request, res: Response, next: NextFunction) {
         try {
-            const body = req.body;
-           const result = await carModel.createCar(body);
-            res.send(result);
-            next();
+            const {value, error} = validation(req.body);
+            if (error == null) {
+                const result = await carModel.createCar(value);
+                res.send(result);
+            }
+            next(error);
         } catch (err) {
             next(err);
         }
@@ -35,13 +41,14 @@ export default {
 
     async updateCar (req: Request, res: Response, next: NextFunction) {
         try {
-            let params = req['query'];
-            console.log(params)
-            const result = await carModel.findOneById(String(params.id));
-            res.send(result)
-            next()
+            const {value, error} = validationUpdate(req)
+            if (error == null) {
+                const result = await carModel.updateCar(value.query, value.body);
+                res.send(result);
+            }
+            next(error);
         } catch (err) {
-            next(err)
+            next(err);
         }
     }
 }
