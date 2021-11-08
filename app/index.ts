@@ -1,13 +1,11 @@
-
-// TODO: replace all require statements with import
 import express from 'express';
-const db = require('./lib/db');
-const routers = require('./routers');
+import db from './lib/db';
+import routers from './routers';
+
 const app = express();
 const port = 3000;
 
 db();
-app.use(express.json());
 
 routers(app);
 

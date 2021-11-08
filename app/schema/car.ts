@@ -1,7 +1,5 @@
-const Double = require('@mongoosejs/double')
-const { Schema } = require('mongoose')
-
-const ownerSchema = new Schema({
+import mongoose from "mongoose";
+const ownerSchema = new mongoose.Schema({
     name: {
         type: String,
         required: false,
@@ -14,9 +12,27 @@ const ownerSchema = new Schema({
     }
 }, { _id: false })
 
+const manufacturerSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: false,
+        index: true
+    },
+    phone: {
+        type: String,
+        required: false,
+        index: true
+    },
+    rate: {
+        type: Number,
+        required: false,
+        index: true
+    }
+});
+
 const carSchema = {
     price: {
-        type: Double,
+        type: Number,
         required: true
     },
     firstRegistrationDate: {
@@ -24,32 +40,10 @@ const carSchema = {
         default: Date.now,
         index: true
     },
-    manufacturer: {
-        id: {
-            type: String,
-            index: true
-        },
-        name: {
-            type: String,
-            required: false,
-            index: true
-        },
-        phone: {
-            type: String,
-            required: false,
-            index: true
-        },
-        rate: {
-            type: Number,
-            required: false,
-            index: true
-        }
-    },
+    manufacturer: manufacturerSchema,
     owner: ownerSchema
 }
 
-const schema = new Schema(carSchema)
+const schema = new mongoose.Schema(carSchema);
 
-schema.index({id: 1 })
-
-module.exports = schema
+export default mongoose.model('car', schema);

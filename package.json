@@ -4,20 +4,28 @@
   "description": "",
   "main": "./app/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --config ./dist/jest.config.js",
+    "dev": "nodemon app/index.ts",
+    "build": "tsc -p .",
+    "start": "node dist/app/index.js",
+    "stop": "node dist/app/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@mongoosejs/double": "^0.1.2",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.2",
+    "@types/joi": "^17.2.3",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^16.11.6",
-    "express": "^4.17.1",
-    "jest": "^27.3.1"
+    "express": "^4.17.1"
   },
   "dependencies": {
-    "@mongoosejs/double": "^0.1.2",
-    "mongoose": "^5.13.12"
+    "@types/supertest": "^2.0.11",
+    "save": "^2.4.0",
+    "supertest": "^6.1.6",
+    "typescript": "^4.4.4"
   }
 }
