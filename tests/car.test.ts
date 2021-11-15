@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 import  request from "supertest";
 import carModel  from '../app/model/car';
 import routers from '../app/routers';
-const express = require("express");
+import express from "express";
 const app = express();
 routers(app);
 
 describe('car model', () => {
     let db: any;
     beforeAll((done) => {
-        mongoose.connect('mongodb://localhost:27017/test_db', {useNewUrlParser: true, useUnifiedTopology: true});
+        mongoose.connect('mongodb://mongo:27017/test_db', {useNewUrlParser: true, useUnifiedTopology: true});
 
         db = mongoose.connection;
         db.on('error', (err: string) => {

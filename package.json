@@ -4,6 +4,7 @@
   "description": "",
   "main": "./app/index.js",
   "scripts": {
+    "docker": "docker-compose up -d",
     "test": "jest --config ./dist/jest.config.js",
     "dev": "nodemon app/index.ts",
     "build": "tsc -p .",
