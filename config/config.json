@@ -1,0 +1,11 @@
+{
+  "db": {
+    "type": "mongodb",
+    "database": "test",
+    "port": 27017,
+    "host": "127.0.0.1"
+  },
+  "app": {
+    "port": 3000
+  }
+}
