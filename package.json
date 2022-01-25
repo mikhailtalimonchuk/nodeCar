@@ -2,14 +2,18 @@
   "name": "cars",
   "version": "1.0.0",
   "description": "",
-  "main": "./app/index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "docker": "tsc -p . && docker-compose up",
     "test": "jest --config ./dist/jest.config.js",
-    "dev": "nodemon app/index.ts",
+    "start:docker": "npm run docker:dev",
+    "docker:dev": "docker compose -f docker-compose.dev.yml up -d",
+    "docker:prod": "docker compose -f docker-compose.prod.yml up -d",
+    "stop": "docker compose -f docker-compose.dev.yml build",
+    "start:dev": "node .",
+    "prebuild": "",
+    "start": "NODE_PATH=./build node build/index.js",
     "build": "tsc -p .",
-    "start": "node dist/app/index.js",
-    "stop": "node dist/app/index.js"
+    "dev": "nodemon app/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,8 +24,12 @@
     "@types/jest": "^27.0.2",
     "@types/joi": "^17.2.3",
     "@types/mongoose": "^5.11.97",
+    "@types/nconf": "^0.10.1",
     "@types/node": "^16.11.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nconf": "^0.11.3",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0"
   },
   "dependencies": {
     "@types/nconf": "^0.10.1",
