@@ -1,0 +1,25 @@
+version: "3.4"
+services:
+  node:
+    restart: always
+    build: 
+      target: dev
+      dockerfile: ./Dockers/Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+    links:
+      - mongo
+    environment:
+      - NODE_ENV=dev
+      - db__host=mongo
+      - db__port=27017
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+volumes:
+  mongodb:
