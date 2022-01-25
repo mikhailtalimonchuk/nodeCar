@@ -4,7 +4,7 @@
   "description": "",
   "main": "./app/index.js",
   "scripts": {
-    "docker": "docker-compose up -d",
+    "docker": "tsc -p . && docker-compose up",
     "test": "jest --config ./dist/jest.config.js",
     "dev": "nodemon app/index.ts",
     "build": "tsc -p .",
@@ -24,6 +24,7 @@
     "express": "^4.17.1"
   },
   "dependencies": {
+    "@types/nconf": "^0.10.1",
     "@types/supertest": "^2.0.11",
     "save": "^2.4.0",
     "supertest": "^6.1.6",
